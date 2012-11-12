@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block "head" %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+	var url = '/api/test/1/';
+	var patchCall = function patchCall(ev) {
+		ev.preventDefault();
+		$.ajax({
+			url: url,
+			type: 'POST', 
+			dataType: 'json',
+			contentType: 'application/json',
+			headers: {
+				'X-HTTP-Method-Override': 'PATCH'
+			},
+			data: JSON.stringify({
+				test: 'mytest'
+			}),
+			success: function success(data, status, xhr) {
+				$('#result').html('Success:' + JSON.stringify(data));
+			},
+			error: function error(xhr, status) {
+				$('#result').html('Error: ' + status);
+			}
+		}).then(getData);
+	};
+
+	var getData = function getData() {
+		$.get(url, function(data, status, xhr){
+			$('#result').html('new value:' + JSON.stringify(data));
+		});
+	};
+
+	$().ready(function(){
+		$('button#patch').click(patchCall)
+		getData()
+	})
+</script>
+{% endblock %}
+
+{% block "body" %}
+<button id="patch">Make patch call</button>
+<div id="result"></div>
+{% endblock %}

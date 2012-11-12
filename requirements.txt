@@ -1,0 +1,22 @@
+# basics
+django>=1.4
+South==0.7.4
+raven
+django-hilbert
+
+# admin
+# django-admin-tools==0.4.1
+
+# images
+# PIL==1.1.7
+# sorl-thumbnail==11.12
+
+git+https://github.com/toastdriven/django-tastypie.git
+# django-pagination==1.0.7
+# django-simple-captcha
+# django-filer
+# django-polymorphic
+
+# Rackspace cloudfiles
+#django-storages
+#python-cloudfiles
